@@ -4,23 +4,23 @@
 #include <time.h>
 
 using namespace std;
-void get_input (int num_1, int num_2);
-void prime_num (int num_1, int num_2);
-
+void get_input (int& num_1, int& num_2);
+void prime_num (int& num_1, int& num_2);
+void get_lcm (int one, int two);
 
 int main (){
 
-using namespace std;
 	srand(time(NULL)); 
-	double num_1, num_2;
+	int num1, num2;
 	
-	get_input (num_1, num_2);
-	prime_num (num_1, num_2);
+	get_input (num1, num2);
+	prime_num (num1, num2);
+	get_lcm (num1, num2);
 	
 	return 0;
 }
 	
-	void get_input (int num_1, int num_2) {
+void get_input (int& num_1, int& num_2) {
 	
 	using namespace std;
 	
@@ -29,26 +29,45 @@ using namespace std;
 		cin >> num_2;
 		
 }
-	void prime_num (int num_1, int num_2){
-		int num1, num2, i, flag;
-		cout << "Prime numbers between " << num1 << " and " << num2 << " are: ";
-		 //while (num1 < num2)
-    //{
-        //flag = 0;
+void get_lcm (int one, int two)
+{
+	int one_counter = one;
+	int two_counter = two;
+	 
+	while(one != two) {
+		if(one<two){
+			one +=one_counter;
+		
+		}else { 
+			two += two_counter;
+		}
+	}
+	cout << "The LCM is " << two << endl;
+}
 
-        for(i = 1; i <= num1/2; ++i)
+	void prime_num (int& num_1, int& num_2){
+	
+	
+		cout << "Prime numbers between " << num_1 << " and " << num_2 << " are: ";
+		cout << endl;
+		
+
+        for(int i = num_1; i <= num_2; i++)
         {
-            if(num1 % i == 0)
-            {
-               // flag = 1;
-                break;
+			bool prime=true;
+			for (int p=2; p<i; p++)
+			{
+				if (i%p==0)
+					prime=false;
+			}
+		   
+		   if (prime) { cout<< i << "  is prime " << endl;
+			   
+		   }
             }
         }
 
-      //  if (flag == 0)
-        //    cout << num1 << " ";
+   
+    
 
-        //++num1;
-    }
 
-	//}
